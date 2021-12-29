@@ -2,9 +2,6 @@ package com.w3dart.utilitysdk.device;
 
 import android.content.Context;
 import android.os.Build;
-import android.provider.Settings;
-import android.telephony.TelephonyManager;
-import android.text.TextUtils;
 import android.util.Log;
 
 import java.io.File;
@@ -12,11 +9,13 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
+import java.util.Properties;
+import java.util.Set;
 
 public class DeviceUtility {
 
     static String tag = DeviceUtility.class.getSimpleName();
-    static String brand;
+    //    static String brand;
     static String manufacturer;
     static String deviceModelName;
     static String androidOsVersion;
@@ -25,40 +24,43 @@ public class DeviceUtility {
     static String defaultLanguage = "en";
     static String defaultCountry = "US";
     static String defaultDateTime = "";
+    static boolean isDeviceRooted = false;
 
     public DeviceUtility(Context context) {
 
-        brand = Build.BRAND;
+//        brand = Build.BRAND;
         manufacturer = Build.MANUFACTURER;
         deviceModelName = Build.MODEL;
         androidOsVersion = Build.VERSION.RELEASE;
         sdkVersion = Build.VERSION.SDK_INT;
 
-
-        System.out.println("----------------------------------Device Utility Start-------------------------------------------------");
+        /*System.out.println("----------------------------------Device Utility Start-------------------------------------------------");
 
         Log.e(tag, "Device MANUFACTURER: " + Build.MANUFACTURER);
-        Log.e(tag, "Device BRAND: " + Build.BRAND);
-        Log.e(tag, "Device PRODUCT: " + Build.PRODUCT);
-        Log.e(tag, "Device DEVICE: " + Build.DEVICE);
+//        Log.e(tag, "Device BRAND: " + Build.BRAND);
+//        Log.e(tag, "Device PRODUCT: " + Build.PRODUCT);
+//        Log.e(tag, "Device DEVICE: " + Build.DEVICE);
         Log.e(tag, "Device MODEL: " + Build.MODEL);
 
-        Log.e(tag, "Device VERSION.SECURITY_PATCH: " + Build.VERSION.SECURITY_PATCH);
+//        Log.e(tag, "Device VERSION.SECURITY_PATCH: " + Build.VERSION.SECURITY_PATCH);
         Log.e(tag, "Device VERSION.RELEASE: " + Build.VERSION.RELEASE);
         Log.e(tag, "Device VERSION.SDK_INT: " + Build.VERSION.SDK_INT);
-        Log.e(tag, "Device VERSION.INCREMENTAL: " + Build.VERSION.INCREMENTAL);
+//        Log.e(tag, "Device VERSION.INCREMENTAL: " + Build.VERSION.INCREMENTAL);
+        Log.e(tag, "Device VERSION.INCREMENTAL: " + Build.FINGERPRINT);
+        Log.e(tag, "Device VERSION.INCREMENTAL: " + Build.FINGERPRINT);
 
         Log.e(tag, "Default Country: " + getDefaultCountry());
         Log.e(tag, "Default Language: " + getDefaultLanguage());
         Log.e(tag, "Current DateTime: " + getDefaultDateTime());
-        Log.e(tag, "isDevice Rooted: " + executeShellCommand());
+        isDeviceRooted = executeShellCommand();
+        Log.e(tag, "isDevice Rooted: " + isDeviceRooted);
         System.out.println("----------------------------------Device Utility END-------------------------------------------------");
-
+*/
     }
 
-    public static String getBrand() {
-        return brand = Build.BRAND;
-    }
+//    public static String getBrand() {
+//        return brand = Build.BRAND;
+//    }
 
     public static String getManufacturer() {
         return manufacturer = Build.MANUFACTURER;
@@ -118,13 +120,14 @@ public class DeviceUtility {
 
     public static String getDetail() {
         return "DeviceDetails { \"manufacture_name\" : \"" + getManufacturer() + "\"" +
-                " , " + " \"brand_name\" : \"" + getBrand() + "\"" +
+                /*" , " + " \"brand_name\" : \"" + getBrand() + "\"" +*/
                 " , " + " \"device_model\" : \"" + getDeviceModelName() + "\"" +
                 " , " + " \"os\" : \" Android " + getAndroidOsVersion() + "\"" +
                 " , " + " \"sdk_number\" : \"" + getSdkVersion() + "\"" +
                 " , " + " \"language\" : \"" + getDefaultLanguage() + "\"" +
                 " , " + " \"country\" : \"" + getDefaultCountry() + "\"" +
                 " , " + " \"date_time\" : \"" + getDefaultDateTime() + "\"" +
+                " , " + " \"is_device_rooted\" : \"" + isDeviceRooted + "\"" +
                 "}";
     }
 

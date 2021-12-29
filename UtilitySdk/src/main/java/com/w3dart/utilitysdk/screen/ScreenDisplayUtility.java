@@ -20,21 +20,16 @@ public class ScreenDisplayUtility {
     static String tag = ScreenDisplayUtility.class.getSimpleName();
     static final float CM_PER_INCH = 2.54f;
 
-    int WATCH = 0;
-    int PHONE = 1;
-    int PHABLET = 2;
-    int TABLET = 3;
-    int TV = 4;
-
-
     int deviceWidth = 0;
     int deviceHeight = 0;
-    double deviceInch = 0;
-    double deviceCM = 0;
+    //    double deviceInch = 0;
+//    double deviceCM = 0;
     double deviceDensity = 0;
-    double deviceDensityDpi = 0;
-    double refreshRate = 0;
+    //    double deviceDensityDpi = 0;
+//    double refreshRate = 0;
     String deviceType = "Phone";
+    String orientation = "Portrait";
+    int brightness = -1;
 
     public ScreenDisplayUtility(Context context) {
         WindowManager windowManager = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
@@ -46,9 +41,9 @@ public class ScreenDisplayUtility {
         // since SDK_INT = 1;
         int widthPixels = displayMetrics.widthPixels;
         int heightPixels = displayMetrics.heightPixels;
-        refreshRate = display.getRefreshRate();
+//        refreshRate = display.getRefreshRate();
         deviceDensity = displayMetrics.density;
-        deviceDensityDpi = displayMetrics.densityDpi;
+//        deviceDensityDpi = displayMetrics.densityDpi;
 
         // includes window decorations (statusbar bar/menu bar)
         try {
@@ -72,25 +67,68 @@ public class ScreenDisplayUtility {
 
 //        deviceInch = Double.parseDouble(String.format(Locale.getDefault(), "%.2f", diagonalInches));
 //        deviceCM = Double.parseDouble(String.format(Locale.getDefault(), "%.2f", deviceInch * CM_PER_INCH));
-        deviceInch = diagonalInches;
-        deviceCM = diagonalInches * CM_PER_INCH;
+//        deviceInch = diagonalInches;
+//        deviceCM = diagonalInches * CM_PER_INCH;
+        deviceType = getDeviceType(context);
+        orientation = getOrientation(context);
+        brightness(context);
 
-        System.out.println("----------------------------------Screen Display Start-------------------------------------------------");
+       /* System.out.println("----------------------------------Screen Display Start-------------------------------------------------");
         Log.e(tag, "Display Detail: Device xdpi: " + displayMetrics.xdpi + " ydpi: " + displayMetrics.ydpi);
         Log.e(tag, "Display Detail: Device getRefreshRate: " + display.getRefreshRate());
         Log.e(tag, "Display Detail: Device Orientation: " + display.getRotation());
 
         Log.e(tag, "Display Detail: Device Width Pixels: " + deviceWidth + " Device Height Pixels: " + deviceHeight);
-        Log.e(tag, "Display Detail: Device Width: " + (deviceWidth / deviceDensity) + " Device Height: " + (deviceHeight / deviceDensity));
-        Log.e(tag, "Display Detail: Device Inch: " + deviceInch + " Device CM: " + deviceCM);
+//        Log.e(tag, "Display Detail: Device Width: " + (deviceWidth / deviceDensity) + " Device Height: " + (deviceHeight / deviceDensity));
+//        Log.e(tag, "Display Detail: Device Inch: " + deviceInch + " Device CM: " + deviceCM);
         Log.e(tag, "Display Density: " + deviceDensity);
-        Log.e(tag, "Display densityDpi: " + deviceDensityDpi);
-        Log.e(tag, "Display density Text: " + getDeviceDensityScreenText(deviceDensity));
-        Log.e(tag, "Display getDeviceType: " + getDeviceType(context));
-        Log.e(tag, "Display getOrientation: " + getOrientation(context));
+//        Log.e(tag, "Display densityDpi: " + deviceDensityDpi);
+//        Log.e(tag, "Display density Text: " + getDeviceDensityScreenText(deviceDensity));
+        Log.e(tag, "Display deviceType: " + deviceType);
+        Log.e(tag, "Display orientation: " + orientation);
+        double ratio = deviceHeight / deviceWidth;
+        Log.e(tag, "Display Aspect Ratio: " + ratio);
+        Log.e(tag, "Display AndroidDeviceType: " + getAndroidDeviceType(context));
+        Log.e(tag, "Display brightness: " + brightness);
         System.out.println("----------------------------------Screen Display END-------------------------------------------------");
-
+*/
     }
+
+    Size getDeviceScreenSizePixels() {
+        return new Size(deviceWidth, deviceHeight);
+    }
+
+//    Size getDeviceScreenSize() {
+//        return new Size((int) (deviceWidth / deviceDensity), (int) (deviceHeight / deviceDensity));
+//    }
+
+    public int getDeviceWidth() {
+        return deviceWidth;
+    }
+
+    public int getDeviceHeight() {
+        return deviceHeight;
+    }
+
+    //    public double getDeviceSizeInch() {
+//        return deviceInch;
+//    }
+//
+//    public double getDeviceSizeCM() {
+//        return deviceCM;
+//    }
+//
+    public double getDeviceDensity() {
+        return deviceDensity;
+    }
+//
+//    public double getDeviceDensityDpi() {
+//        return deviceDensityDpi;
+//    }
+//
+//    public double getRefreshRate() {
+//        return refreshRate;
+//    }
 
     String getDeviceDensityScreenText(double density) {
 
@@ -129,38 +167,32 @@ public class ScreenDisplayUtility {
                 break;
         }*/
 
-         /* 0.75 - ldpi
 
-        1.0 - mdpi
-
-        1.5 - hdpi
-
-        2.0 - xhdpi
-
-        3.0 - xxhdpi
-
-        4.0 - xxxhdpi*/
-
-        String screen = "unknown";
 
         if (density == 0.75) {
-            screen = "ldpi";
+            return " (ldpi)";
         } else if (density == 1.0) {
-            screen = "mdpi";
+            return " (mdpi)";
         } else if (density == 1.5) {
-            screen = "hdpi";
+            return " (hdpi)";
         } else if (density == 2.0) {
-            screen = "xhdpi";
+            return " (xhdpi)";
         } else if (density == 3.0) {
-            screen = "xxhdpi";
+            return " (xxhdpi)";
         } else if (density == 4.0) {
-            screen = "xxxhdpi";
+            return " (xxxhdpi)";
+        } else {
+            return "";
         }
-        return screen;
     }
 
     public final String getDeviceType(Context context) {
 
+        int WATCH = 0;
+        int PHONE = 1;
+        int PHABLET = 2;
+        int TABLET = 3;
+        int TV = 4;
 
         WindowManager windowManager = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
 //        DisplayMetrics metrics = new DisplayMetrics();
@@ -189,18 +221,28 @@ public class ScreenDisplayUtility {
 //        double diagonalInches = Math.sqrt(Math.pow(widthPixels / displayMetrics.xdpi, 2) + Math.pow(heightPixels / displayMetrics.ydpi, 2));
 
 //        if (diagonalInches > 10.1) {
-        if (diagonalInches > 13) {
-            deviceType = "Tv";
+        if (diagonalInches > 14) {
+            return "Tv";
         } else if (diagonalInches <= 10.1 && diagonalInches > 7) {
-            deviceType = "Tablet";
+            return "Tablet";
         } else if (diagonalInches <= 7 && diagonalInches > 6.5) {
-            deviceType = "Phablet";
-        } else if (diagonalInches <= 6.5 && diagonalInches >= 2) {
-            deviceType = "Phone";
+            return "Phablet";
+        } else if (diagonalInches <= 6.5 && diagonalInches >= 2.5) {
+            return "Phone";
         } else {
-            deviceType = "Watch";
+            return "Watch";
         }
-        return deviceType;
+    }
+
+    public final String getAndroidDeviceType(Context context) {
+        TelephonyManager manager = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
+        Log.e(tag, "TelephonyManager.PHONE_TYPE_NONE: " + manager.getPhoneType());
+
+        if (manager.getPhoneType() == TelephonyManager.PHONE_TYPE_NONE) {
+            return "Tablet";
+        } else {
+            return "Mobile";
+        }
     }
 
     public final String getOrientation(final Context context) {
@@ -214,10 +256,57 @@ public class ScreenDisplayUtility {
         }
     }
 
+    private void brightness(Context context) {
+
+//        Settings.System.putInt(context.getContentResolver(), Settings.System.SCREEN_BRIGHTNESS_MODE, Settings.System.SCREEN_BRIGHTNESS_MODE_MANUAL);
+        try {
+            brightness = Settings.System.getInt(context.getContentResolver(), Settings.System.SCREEN_BRIGHTNESS);
+//            System.out.println("Current Brightness level curBrightnessValue: " + brightness);
+        } catch (Settings.SettingNotFoundException e) {
+            e.printStackTrace();
+        }
+        if (brightness == -1) {
+            try {
+
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                    if (!Settings.System.canWrite(context)) {
+                        //Enable write permission
+                        Intent intent = new Intent(Settings.ACTION_MANAGE_WRITE_SETTINGS);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        context.startActivity(intent);
+                    } else {
+                        // Get system brightness
+                        Settings.System.putInt(context.getContentResolver(), Settings.System.SCREEN_BRIGHTNESS_MODE, Settings.System.SCREEN_BRIGHTNESS_MODE_AUTOMATIC); // enable auto brightness
+                        brightness = Settings.System.getInt(context.getContentResolver(), Settings.System.SCREEN_BRIGHTNESS, 0);  // in the range [0, 255]
+                    }
+                } else {
+                    // Get system brightness
+                    Settings.System.putInt(context.getContentResolver(), Settings.System.SCREEN_BRIGHTNESS_MODE, Settings.System.SCREEN_BRIGHTNESS_MODE_AUTOMATIC); // enable auto brightness
+                    brightness = Settings.System.getInt(context.getContentResolver(), Settings.System.SCREEN_BRIGHTNESS, 0);  // in the range [0, 255]
+                }
+
+//                System.out.println("Current Brightness level " + brightness);
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
+
+    }
 
     public String getDetail() {
-        return "Display {density=" + deviceDensity + " (" + getDeviceDensityScreenText(deviceDensity) + ") Refresh rate= " + refreshRate + ", width=" + deviceWidth +
-                ", height=" + deviceHeight + ", deviceSize(inch)=" + deviceInch + ", deviceSize(cm)=" + deviceCM + "}";
+
+        return "Display { \"screen_resolution\" : \"" + getDeviceScreenSizePixels() + " [width x height]" + "\"" +
+                /*" , " + " \"screen_size_inch\" : \"" + getDeviceSizeInch() + "\"" +
+                " , " + " \"screen_size_cm\" : \"" + getDeviceSizeCM() + "\"" +*/
+                " , " + " \"density\" : \"" + getDeviceDensity() + "\"" +
+               /* " , " + " \"density_dpi\" : \"" + getDeviceDensityDpi() + getDeviceDensityScreenText(getDeviceDensity()) + "\"" +
+                " , " + " \"refresh_rate\" : \"" + getRefreshRate() + " Hz\"" +*/
+                " , " + " \"device_type\" : \"" + deviceType + "\"" +
+                " , " + " \"orientation\" : \"" + orientation + "\"" +
+                " , " + " \"brightness\" : \"" + brightness + "\"" +
+                "}";
     }
 
 
