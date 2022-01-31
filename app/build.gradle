@@ -6,7 +6,8 @@ android {
     compileSdk 31
 
     defaultConfig {
-        applicationId "com.w3dartsdk"
+        multiDexEnabled true
+        applicationId "com.sdkdemo"
         minSdk 21
         targetSdk 31
         versionCode 1
@@ -21,9 +22,12 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+    dataBinding {
+        enabled = true
+    }
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_1_10
+        targetCompatibility JavaVersion.VERSION_1_10
     }
 }
 
@@ -37,4 +41,7 @@ dependencies {
     implementation 'com.google.android.material:material:1.4.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.2'
     implementation project(path: ':UtilitySdk')
+
+    implementation 'com.instabug.library:instabug:10.11.0'
+    implementation 'androidx.multidex:multidex:2.0.1'
 }

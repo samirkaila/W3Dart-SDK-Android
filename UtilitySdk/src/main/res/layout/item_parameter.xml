@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/root"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+     <TextView
+         android:id="@+id/tv_parameter_value"
+         style="@style/textParameterValueStyle"
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:text="@string/report_your_bug" />
+
+     <TextView
+         android:id="@+id/tv_parameter_key"
+         style="@style/textParameterKeyStyle"
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:text="@string/report_your_bug" />
+
+</LinearLayout>

@@ -1,0 +1,14 @@
+<resources>
+    <!--<string name="app_name">w3dart</string>-->
+    <string name="app_name">W3Dart-Android SDK</string>
+
+    <!--  add task  -->
+    <string name="sdk_version">SDK V(%1$s)</string>
+    <string name="report_your_bug">Report your Bug</string>
+    <string name="sdk_submit">Submit</string>
+    <string name="sdk_title">Title</string>
+    <string name="sdk_description">Description</string>
+
+    <string name="sdk_captured_parameter">Captured Parameters</string>
+
+</resources>

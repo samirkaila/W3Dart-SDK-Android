@@ -1,0 +1,12 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <!--  round button with blue/white image  -->
+    <dimen name="common_button_height">@dimen/_32sdp</dimen>     <!--50px-->
+    <dimen name="common_button_text_size">@dimen/_12ssp</dimen>     <!--14px-->
+
+    <dimen name="title_text_size">@dimen/_20ssp</dimen>     <!--24px-->
+    <dimen name="input_text_height">@dimen/_45sdp</dimen>     <!--56px-->
+    <dimen name="common_text_size">@dimen/_12ssp</dimen>     <!--14px-->
+    <dimen name="small_text_size">@dimen/_10ssp</dimen>     <!--10px-->
+
+</resources>
