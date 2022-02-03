@@ -81,7 +81,7 @@ public class ShowHudService extends Service {
 
                 // this is important, otherwise the notification will show the way
                 // you want i.e. it will show some default notification
-                .setSmallIcon(R.drawable.bobo2)
+                .setSmallIcon(R.drawable.ic_floating_icon)
 
                 .setPriority(NotificationManager.IMPORTANCE_MIN)
                 .setCategory(Notification.CATEGORY_SERVICE)
