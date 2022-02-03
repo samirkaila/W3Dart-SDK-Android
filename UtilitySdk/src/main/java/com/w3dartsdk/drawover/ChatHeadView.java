@@ -59,13 +59,15 @@ public class ChatHeadView {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             // set the layout parameters of the window
             mPaperParams = new WindowManager.LayoutParams(
-                    WindowManager.LayoutParams.WRAP_CONTENT, WindowManager.LayoutParams.WRAP_CONTENT,
+                    150,150,
                     WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY,
                     WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE,
                     PixelFormat.TRANSLUCENT);
         } else {
 
-            mPaperParams = new WindowManager.LayoutParams(WindowManager.LayoutParams.WRAP_CONTENT, WindowManager.LayoutParams.WRAP_CONTENT,
+            mPaperParams = new WindowManager.LayoutParams(
+                    150,150,
+                    /*WindowManager.LayoutParams.WRAP_CONTENT, WindowManager.LayoutParams.WRAP_CONTENT,*/
                     WindowManager.LayoutParams.TYPE_PHONE,
                     /*WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL | WindowManager.LayoutParams.FLAG_WATCH_OUTSIDE_TOUCH | */WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE,
                     PixelFormat.TRANSPARENT);
@@ -79,7 +81,7 @@ public class ChatHeadView {
         Log.e("Service", "Width: " + windowWidth + " Height: " + windowHeight);
 
         ivCrumpledPaper = new ImageView(context);
-        ivCrumpledPaper.setImageResource(R.drawable.bobo2);
+        ivCrumpledPaper.setImageResource(R.drawable.ic_floating_icon);
 
         mPaperParams.x = 0;
 //        mPaperParams.y = ivCrumpledPaper.getHeight()+getStatusBarHeight();

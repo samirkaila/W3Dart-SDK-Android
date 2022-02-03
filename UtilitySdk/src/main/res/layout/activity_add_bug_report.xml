@@ -73,10 +73,16 @@
             </RelativeLayout>
 
 
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/imgScreenShot"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"/>
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="10dp"
                 android:text="@string/sdk_title"
                 android:textColor="@color/dark_gray_text" />
 
@@ -135,10 +141,6 @@
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 tools:listitem="@layout/item_parameter" />
 
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/imgScreenShot"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
         </LinearLayout>
 
     </androidx.core.widget.NestedScrollView>
