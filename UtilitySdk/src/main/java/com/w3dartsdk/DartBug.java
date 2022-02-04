@@ -36,6 +36,7 @@ public class DartBug {
 
     private static final String tag = "DartBug";
     public static long appStartTime;
+   public static String appVersion = "";
 
     public static class Builder {
 
@@ -46,13 +47,15 @@ public class DartBug {
         //        private String applicationToken;
         //        private DartBugInvocationEvent[] dartBugInvocationEvents;
 
-        public Builder(@NonNull Application application, @NonNull String applicationToken) {
+
+        public Builder(@NonNull Application application, @NonNull String applicationToken, @NonNull String refAppVersion) {
 
             DartBug.Builder builder = this;
             this.application = application;
 //            this.applicationToken = applicationToken;
             application.registerActivityLifecycleCallbacks(new TextOverlayActivityLifecycleCallbacks());
             appStartTime = System.currentTimeMillis();
+            appVersion = refAppVersion;
         }
 
 //        public DartBug.Builder setInvocationEvents(@NonNull DartBugInvocationEvent... DartBugInvocationEvents) {

@@ -19,7 +19,7 @@ public class AppController extends Application {
 //                .build();
 
 
-        new DartBug.Builder(this, "Demo@gmail.com")
+        new DartBug.Builder(this, "Demo@gmail.com",BuildConfig.VERSION_NAME)
                 .setDebugEnabled(true)
                 .enableFloating(true)
                 .build();

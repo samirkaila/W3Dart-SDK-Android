@@ -86,7 +86,7 @@ public class DeviceDetail {
     int deviceWidth = 0;
     int deviceHeight = 0;
     double deviceDensity = 0;
-    String deviceType = "Phone";
+    String deviceType = "Android Phone";
     String orientation = "Portrait";
     int brightness = -1;
 
@@ -393,15 +393,15 @@ public class DeviceDetail {
 
 //        if (diagonalInches > 10.1) {
         if (diagonalInches > 14) {
-            return "Tv";
+            return "Android Tv";
         } else if (diagonalInches <= 10.1 && diagonalInches > 7) {
-            return "Tablet";
+            return "Android Tablet";
         } else if (diagonalInches <= 7 && diagonalInches > 6.5) {
-            return "Phablet";
+            return "Android Phablet";
         } else if (diagonalInches <= 6.5 && diagonalInches >= 2.5) {
-            return "Phone";
+            return "Android Phone";
         } else {
-            return "Watch";
+            return "Android Watch";
         }
     }
 
@@ -688,7 +688,7 @@ public class DeviceDetail {
     }
 
     public boolean getNetworkAvailable() {
-        return isWifiEnable;
+        return isNetworkAvailable;
     }
 
     public boolean getNetworkWifiEnabled() {
