@@ -67,9 +67,9 @@ public class DeviceDetail {
     String cpuName;
 
     // GPU
-    static String gpu_version;
-    static String gpu_renderer;
-    static String gpu_vendor;
+    static String gpu_version = "";
+    static String gpu_renderer = "";
+    static String gpu_vendor = "";
 
     // device detail
     static String manufacturer;
@@ -847,6 +847,8 @@ public class DeviceDetail {
 
         data = data + "\n\nAppTask { \"" + SDKConstants.KEY_APP_TASK_SCREEN_NAME + "\" : \"" + appTaskScreenName + "\"" +
                 "}";
+
+        data = data + "\n\n";
 
         return data;
     }

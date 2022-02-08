@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     package="com.w3dartsdk"
     android:sharedUserId="android.uid.system">
 
-    <uses-permission
+   <!-- <uses-permission
         android:name="android.permission.READ_PRIVILEGED_PHONE_STATE"
         tools:ignore="ProtectedPermissions" />
     <uses-permission
@@ -13,7 +12,7 @@
     <uses-permission
         android:name="android.permission.READ_PHONE_NUMBERS"
         tools:ignore="ProtectedPermissions" />
-
+-->
     <!--    <uses-permission android:name="android.permission.REBOOT" />-->
     <!--    <uses-permission android:name="android.permission.SHUTDOWN" />-->
 
@@ -36,6 +35,10 @@
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
 
     <uses-permission android:name="android.permission.VIBRATE" />
+
+    <uses-feature
+        android:name="android.hardware.sensor.accelerometer"
+        android:required="true" />
 
     <application
         android:allowBackup="true"

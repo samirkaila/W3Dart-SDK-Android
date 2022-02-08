@@ -3,6 +3,8 @@ package com.w3dartsdk;
 import android.app.Application;
 import android.content.Context;
 import android.content.Intent;
+import android.hardware.Sensor;
+import android.hardware.SensorManager;
 import android.os.Build;
 import android.os.Handler;
 import android.provider.Settings;
@@ -11,7 +13,9 @@ import android.util.Log;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.w3dartsdk.drawover.AddBugReportActivity;
 import com.w3dartsdk.drawover.ShowHudService;
+import com.w3dartsdk.utilitysdk.SDKConstants;
 import com.w3dartsdk.utilitysdk.TextOverlayActivityLifecycleCallbacks;
 import com.w3dartsdk.utilitysdk.battery.BatteryUtility;
 import com.w3dartsdk.utilitysdk.cpu.CpuUtility;
@@ -21,6 +25,7 @@ import com.w3dartsdk.utilitysdk.hardware.HardwareUtility;
 import com.w3dartsdk.utilitysdk.memory.MemoryUtility;
 import com.w3dartsdk.utilitysdk.network.NetworkUtility;
 import com.w3dartsdk.utilitysdk.screen.ScreenDisplayUtility;
+import com.w3dartsdk.utilitysdk.shake.ShakeDetector;
 
 public class DartBug {
 
@@ -48,6 +53,12 @@ public class DartBug {
         //        private DartBugInvocationEvent[] dartBugInvocationEvents;
 
 
+        // The following are used for the shake detection
+        private SensorManager mSensorManager;
+        private Sensor mAccelerometer;
+        private ShakeDetector mShakeDetector;
+
+
         public Builder(@NonNull Application application, @NonNull String applicationToken, @NonNull String refAppVersion) {
 
             DartBug.Builder builder = this;
@@ -56,6 +67,7 @@ public class DartBug {
             application.registerActivityLifecycleCallbacks(new TextOverlayActivityLifecycleCallbacks());
             appStartTime = System.currentTimeMillis();
             appVersion = refAppVersion;
+            initializeShake();
         }
 
 //        public DartBug.Builder setInvocationEvents(@NonNull DartBugInvocationEvent... DartBugInvocationEvents) {
@@ -231,6 +243,33 @@ public class DartBug {
             } catch (Exception e) {
                 e.printStackTrace();
             }
+
+        }
+
+
+        private void initializeShake() {
+            Log.e(tag, "initializeShake called");
+            // ShakeDetector initialization
+            mSensorManager = (SensorManager) application.getApplicationContext().getSystemService(Context.SENSOR_SERVICE);
+            mAccelerometer = mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
+            mShakeDetector = new ShakeDetector();
+            mSensorManager.registerListener(mShakeDetector, mAccelerometer, SensorManager.SENSOR_DELAY_NORMAL);
+            mShakeDetector.setOnShakeListener(new ShakeDetector.OnShakeListener() {
+
+                @Override
+                public void onShake(int count) {
+                    Log.e(tag, "onShake  called count:" + count);
+                    /*
+                     * The following method, "handleShakeEvent(count):" is a stub //
+                     * method you would use to setup whatever you want done once the
+                     * device has been shook.
+                     */
+                    SDKConstants.ENABLE_SCREEN_SHOT = true;
+                    application.startActivity(new Intent(application.getApplicationContext(), AddBugReportActivity.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP));
+                    application.stopService(new Intent(application, ShowHudService.class));
+
+                }
+            });
 
         }
 

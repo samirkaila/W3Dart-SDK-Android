@@ -1,6 +1,9 @@
 package com.w3dartsdk.drawover;
 
+import android.content.Context;
 import android.content.Intent;
+import android.hardware.Sensor;
+import android.hardware.SensorManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -19,6 +22,7 @@ import com.w3dartsdk.DeviceDetail;
 import com.w3dartsdk.R;
 import com.w3dartsdk.databinding.ActivityAddBugReportBinding;
 import com.w3dartsdk.model.DeviceData;
+import com.w3dartsdk.utilitysdk.shake.ShakeDetector;
 import com.w3dartsdk.utils.LinearLayoutSpaceItemDecoration;
 
 import java.util.ArrayList;
@@ -126,8 +130,6 @@ public class AddBugReportActivity extends AppCompatActivity {
                         }
                     }
                 }
-
-
                 adapter.notifyDataSetChanged();
             }
         }, 2000);
@@ -150,8 +152,8 @@ public class AddBugReportActivity extends AppCompatActivity {
             deviceDataArrayList.add(new DeviceData("Network Connectivity", "Disconnected"));
         }
 
-        deviceDataArrayList.add(new DeviceData("Language", "" + deviceDetail.getDeviceDefaultLanguage()));
-        deviceDataArrayList.add(new DeviceData("Country", "" + deviceDetail.getDeviceDefaultCountry()));
+        deviceDataArrayList.add(new DeviceData("Language",  deviceDetail.getDeviceDefaultLanguage()));
+        deviceDataArrayList.add(new DeviceData("Country",  deviceDetail.getDeviceDefaultCountry()));
         deviceDataArrayList.add(new DeviceData("Orientation", deviceDetail.getDeviceScreenOrientation()));
 
         Log.e("AddBugReportActivity", "SDK Detail: " + deviceDetail.getDetail());
@@ -172,6 +174,7 @@ public class AddBugReportActivity extends AppCompatActivity {
         });
 
     }
+
 
     private void initListeners() {
         fab.setOnClickListener(new View.OnClickListener() {
