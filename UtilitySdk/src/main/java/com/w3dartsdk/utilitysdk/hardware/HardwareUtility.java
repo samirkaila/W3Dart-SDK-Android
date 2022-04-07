@@ -16,6 +16,9 @@ import androidx.core.content.ContextCompat;
 
 import com.w3dartsdk.utilitysdk.SDKConstants;
 
+/*
+    This is the class for getting hardware related information from the device
+ */
 public class HardwareUtility {
 
     static String tag = HardwareUtility.class.getSimpleName();

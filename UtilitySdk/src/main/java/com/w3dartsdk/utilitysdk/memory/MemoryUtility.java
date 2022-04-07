@@ -17,6 +17,9 @@ import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/*
+    This is the class for getting memory and storage related information from the device
+ */
 public class MemoryUtility {
 
     static String tag = MemoryUtility.class.getSimpleName();

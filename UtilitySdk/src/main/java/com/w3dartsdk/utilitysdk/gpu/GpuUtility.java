@@ -12,6 +12,9 @@ import com.w3dartsdk.utilitysdk.SDKConstants;
 import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.opengles.GL10;
 
+/*
+    This is the class for getting GPU related information from the device
+ */
 public class GpuUtility {
 
     static String tag = GpuUtility.class.getSimpleName();

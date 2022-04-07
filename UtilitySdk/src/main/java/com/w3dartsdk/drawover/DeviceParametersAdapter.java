@@ -14,6 +14,9 @@ import com.w3dartsdk.R;
 
 import java.util.ArrayList;
 
+/*
+    This is adapter class that is used to see the list items in add bug report screen
+ */
 public class DeviceParametersAdapter extends RecyclerView.Adapter<DeviceParametersAdapter.ExerciseHolder> {
 
     ArrayList<DeviceData> deviceDataArrayList;

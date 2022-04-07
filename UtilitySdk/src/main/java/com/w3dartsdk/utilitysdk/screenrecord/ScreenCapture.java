@@ -16,6 +16,9 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
+/*
+    This is the class for storing the screen shot activity to take screen shot of the screen
+ */
 public class ScreenCapture {
 
     private static final String tag = ScreenCapture.class.getSimpleName();

@@ -22,7 +22,9 @@ import com.w3dartsdk.DartBug;
 import com.w3dartsdk.R;
 import com.w3dartsdk.utilitysdk.SDKConstants;
 
-
+/*
+    This is view that will be drawn over other apps to show moving button on screen
+ */
 public class ChatHeadView {
 
     // constants

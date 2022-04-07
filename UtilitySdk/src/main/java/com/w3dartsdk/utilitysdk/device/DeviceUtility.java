@@ -11,6 +11,9 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
 
+/*
+    This is the class for getting device related information from the device
+ */
 public class DeviceUtility {
 
     static String tag = DeviceUtility.class.getSimpleName();

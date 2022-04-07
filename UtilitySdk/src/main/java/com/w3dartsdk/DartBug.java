@@ -27,6 +27,9 @@ import com.w3dartsdk.utilitysdk.network.NetworkUtility;
 import com.w3dartsdk.utilitysdk.screen.ScreenDisplayUtility;
 import com.w3dartsdk.utilitysdk.shake.ShakeDetector;
 
+/*
+    This is the main class of Dart sdk to be called in application level class in application
+ */
 public class DartBug {
 
 //new DartBug.Builder(this, "ac205486b192e63953d9ee86588b427c")
@@ -38,11 +41,15 @@ public class DartBug {
 //                .setDebugEnabled(true)
 //                .build();
 
-
     private static final String tag = "DartBug";
-    public static long appStartTime;
-   public static String appVersion = "";
 
+    // This is the time to store start time when app is created in memory
+    public static long appStartTime;
+
+    // This is variable to store application version
+    public static String appVersion = "";
+
+    // this is the builder class that will build and initialize the sdk
     public static class Builder {
 
         private static Application application;
@@ -64,9 +71,17 @@ public class DartBug {
             DartBug.Builder builder = this;
             this.application = application;
 //            this.applicationToken = applicationToken;
+
+            // this code is used to register activity call back for application who implement this sdk
             application.registerActivityLifecycleCallbacks(new TextOverlayActivityLifecycleCallbacks());
+
+            //Here we take current time of device when app started for first time
             appStartTime = System.currentTimeMillis();
+
+            //Here we take app version of application who implemented this sdk
             appVersion = refAppVersion;
+
+            // here we initialize the shake event
             initializeShake();
         }
 
@@ -87,7 +102,7 @@ public class DartBug {
         }
 
 
-        // method for starting the service
+        // method for starting the service to draw over app button so user can add bug
         public void startService() {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                 // check if the user has already granted
@@ -157,16 +172,19 @@ public class DartBug {
             }
         }
 
+        // This method is used to enable to draw over app to show button to register error using sdk
         public DartBug.Builder enableFloating(boolean isEnable) {
             // Instantiate the gesture detector with the application context and an implementation of
             // GestureDetector.OnGestureListener
 //            mDetector = new GestureDetectorCompat(applicationContext, this);
             // Set the gesture detector as the double tap listener.
 //            mDetector.setOnDoubleTapListener(this);
-            checkOverlayPermission();
+            if (isEnable)
+                checkOverlayPermission();
             return this;
         }
 
+        // This is the method to initialize and enable to get all the information from the device
         @Nullable
         public void build() {
 //            DartBugSDKLogger.d("DartBug", "building sdk with default state ");
@@ -191,7 +209,7 @@ public class DartBug {
             }
         }
 
-        private void buildBasicDetail(Context appContext) {
+        /*private void buildBasicDetail(Context appContext) {
             DeviceUtility deviceUtility = new DeviceUtility(appContext);
             if (isDebuggingEnable)
                 Log.e(tag, "deviceUtility Detail: " + deviceUtility.getDetail());
@@ -244,9 +262,9 @@ public class DartBug {
                 e.printStackTrace();
             }
 
-        }
+        }*/
 
-
+        // This method is used to enable shake event when device is shaked
         private void initializeShake() {
             Log.e(tag, "initializeShake called");
             // ShakeDetector initialization

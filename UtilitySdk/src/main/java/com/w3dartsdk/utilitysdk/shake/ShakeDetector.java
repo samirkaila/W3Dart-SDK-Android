@@ -6,6 +6,9 @@ import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.util.Log;
 
+/*
+    This is the class for detecting shake event of device
+ */
 public class ShakeDetector implements SensorEventListener {
 
     /*

@@ -10,6 +10,9 @@ import com.w3dartsdk.utilitysdk.SDKConstants;
 
 import java.util.List;
 
+/*
+    This is the class for getting most recent display screen related information from the application
+ */
 public class AppTaskUtility {
 
     static String tag = AppTaskUtility.class.getSimpleName();

@@ -18,6 +18,9 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.regex.Pattern;
 
+/*
+    This is the class for getting CPU related information from the device
+ */
 public class CpuUtility {
 
     static String tag = CpuUtility.class.getSimpleName();

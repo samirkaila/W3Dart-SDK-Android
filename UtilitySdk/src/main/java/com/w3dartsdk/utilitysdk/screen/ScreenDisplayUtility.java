@@ -17,6 +17,9 @@ import android.view.WindowManager;
 
 import com.w3dartsdk.utilitysdk.SDKConstants;
 
+/*
+    This is the class for getting device's screen related information from the device
+ */
 public class ScreenDisplayUtility {
 
     static String tag = ScreenDisplayUtility.class.getSimpleName();

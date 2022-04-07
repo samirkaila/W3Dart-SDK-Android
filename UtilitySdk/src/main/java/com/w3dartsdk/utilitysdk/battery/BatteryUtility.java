@@ -7,6 +7,9 @@ import android.os.BatteryManager;
 
 import com.w3dartsdk.utilitysdk.SDKConstants;
 
+/*
+    This is the class for getting battery related information from the device
+ */
 public class BatteryUtility {
 
     private static String tag = BatteryUtility.class.getSimpleName();

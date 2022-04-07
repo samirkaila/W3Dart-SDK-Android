@@ -1,5 +1,9 @@
 package com.w3dartsdk.utilitysdk;
 
+
+/*
+    This is the class for constants used to add bug giving a key name
+ */
 public class SDKConstants {
 
     // Battery

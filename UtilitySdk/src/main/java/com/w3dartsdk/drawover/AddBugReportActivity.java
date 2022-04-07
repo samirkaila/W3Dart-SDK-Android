@@ -1,9 +1,6 @@
 package com.w3dartsdk.drawover;
 
-import android.content.Context;
 import android.content.Intent;
-import android.hardware.Sensor;
-import android.hardware.SensorManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -22,7 +19,6 @@ import com.w3dartsdk.DeviceDetail;
 import com.w3dartsdk.R;
 import com.w3dartsdk.databinding.ActivityAddBugReportBinding;
 import com.w3dartsdk.model.DeviceData;
-import com.w3dartsdk.utilitysdk.shake.ShakeDetector;
 import com.w3dartsdk.utils.LinearLayoutSpaceItemDecoration;
 
 import java.util.ArrayList;
@@ -31,6 +27,8 @@ public class AddBugReportActivity extends AppCompatActivity {
 
     ActivityAddBugReportBinding binding;
     private FloatingActionButton fab;
+
+    // This is used to calculate the time when bug has been registered after app open
     long addBugOpenTime;
 
     DeviceParametersAdapter adapter;
@@ -93,7 +91,6 @@ public class AddBugReportActivity extends AppCompatActivity {
 //        deviceDataArrayList.add(new DeviceData("Device Resolution", deviceDetail.getDeviceScreenWidth() + " x " + deviceDetail.getDeviceScreenHeight()));
 //        deviceDataArrayList.add(new DeviceData("Screen Density", "" + deviceDetail.getDeviceScreenDensity()));
         deviceDataArrayList.add(new DeviceData("Brightness", "" + deviceDetail.getDeviceScreenBrightnessLevel()));
-
 
         adapter = new DeviceParametersAdapter(getApplicationContext(), deviceDataArrayList);
         binding.rcvParameters.setAdapter(adapter);

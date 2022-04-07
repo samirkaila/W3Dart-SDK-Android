@@ -53,6 +53,9 @@ import java.util.Locale;
 import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.opengles.GL10;
 
+/*
+    This is the main class used to get all the required information of the device
+ */
 public class DeviceDetail {
 
     static String tag = DeviceDetail.class.getSimpleName();
@@ -451,7 +454,6 @@ public class DeviceDetail {
             }
         }
     }
-
 
     public String getDeviceManufacturer() {
         return manufacturer = Build.MANUFACTURER;

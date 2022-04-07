@@ -15,6 +15,9 @@ import java.util.Calendar;
 import java.util.Collections;
 import java.util.List;
 
+/*
+    This is the class for getting network/mobile data related information from the device
+ */
 public class NetworkUtility {
 
     static String tag = NetworkUtility.class.getSimpleName();

@@ -15,6 +15,9 @@ import androidx.core.app.NotificationCompat;
 
 import com.w3dartsdk.R;
 
+/*
+    This is the main service that is responsible for handling click on moving button on screen
+ */
 public class ShowHudService extends Service {
 
     // constants
